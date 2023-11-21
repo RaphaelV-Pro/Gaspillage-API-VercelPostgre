@@ -7,10 +7,11 @@ require('dotenv').config()
 app.use(express.json())
 
 //const port = 3000
-
+/*
 app.use('/', (req, res) => {
   res.send('Hello World!')
 })
+*/
 
 const usersRouter = require('./routes/users.router')
 
