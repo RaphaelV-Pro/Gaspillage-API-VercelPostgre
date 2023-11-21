@@ -1,11 +1,21 @@
 const express = require('express')
 const app = express()
-const port = 3000
+//const db = require('./database');
 
-app.get('/', (req, res) => {
+require('dotenv').config()
+
+app.use(express.json())
+
+//const port = 3000
+
+app.use('/', (req, res) => {
   res.send('Hello World!')
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
+const usersRouter = require('./routes/users.router')
+
+app.use("/api/v1/users", usersRouter)
+
+app.listen(process.env.PORT, () => {
+  console.log(`Example app listening on port ${process.env.PORT}`)
 })
