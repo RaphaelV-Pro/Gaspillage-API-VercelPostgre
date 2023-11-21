@@ -1,8 +1,8 @@
 const postgre = require('../database')
-const usersController = {
+const categoryController = {
     getAll: async(req, res) => {
         try {
-            const { rows } = await postgre.query("SELECT * FROM user")
+            const { rows } = await postgre.query("SELECT * FROM category")
             res.json({msg: "OK", data: rows})
         } catch (error) {
             res.json({msg: error.msg})
@@ -10,4 +10,4 @@ const usersController = {
     }
 }
 
-module.exports = usersController;
+module.exports = categoryController;

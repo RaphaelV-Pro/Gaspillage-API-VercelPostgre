@@ -14,8 +14,10 @@ app.use('/', (req, res) => {
 */
 
 const usersRouter = require('./routes/users.router')
+const categoryRouter = require('./routes/category.router')
 
 app.use("/api/v1/users", usersRouter)
+app.use("/api/v1/category", categoryRouter)
 
 app.listen(process.env.PORT, () => {
   console.log(`Example app listening on port ${process.env.PORT}`)
