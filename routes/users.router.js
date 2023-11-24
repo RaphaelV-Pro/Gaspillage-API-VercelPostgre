@@ -17,7 +17,7 @@ router.get('/', connection.loginGet, function (req, res, next) {
     })
 });
 */
-router.get('/', function (req, res, next) {
+router.get('/', function (req, res) {
     connection.loginGet(req, res, function (err) {
         if (err) {
             return res.status(403).send({
