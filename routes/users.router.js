@@ -25,13 +25,7 @@ router.get('/', function (req, res, next) {
             });
         }
         // Si l'authentification réussit, appeler la fonction du contrôleur.
-        usersController.getAll(function (err, result) {
-            if (err) {
-                res.json(err);
-            } else {
-                res.json(result);
-            }
-        });
+        usersController.getAll(req, res);
     });
 });
 
