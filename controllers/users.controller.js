@@ -1,6 +1,6 @@
 const postgre = require('../database')
 const usersController = {
-    getAll: async(req, res) => {
+    getAll: async(req, res, callback) => {
         try {
             const { rows } = await postgre.query("SELECT * FROM users")
             res.json({msg: "OK", data: rows})
