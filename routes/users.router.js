@@ -6,6 +6,7 @@ var connection = require('../tools/connection');
 const usersController = require('../controllers/users.controller')
 
 //router.get("/", usersController.getAll)
+/*
 router.get('/', connection.loginGet, function (req, res, next) {
     usersController.getAll(function (err, result) {
         if (err) {
@@ -14,6 +15,24 @@ router.get('/', connection.loginGet, function (req, res, next) {
             res.json(result);
         }
     })
+});
+*/
+router.get('/', function (req, res, next) {
+    connection.loginGet(req, res, function (err) {
+        if (err) {
+            return res.status(403).send({
+                message: "Accès interdit, bloqué au bout de 3 tentatives."
+            });
+        }
+        // Si l'authentification réussit, appeler la fonction du contrôleur.
+        usersController.getAll(function (err, result) {
+            if (err) {
+                res.json(err);
+            } else {
+                res.json(result);
+            }
+        });
+    });
 });
 
 
