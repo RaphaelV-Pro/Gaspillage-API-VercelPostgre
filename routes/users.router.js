@@ -7,7 +7,13 @@ const usersController = require('../controllers/users.controller')
 
 //router.get("/", usersController.getAll)
 router.get('/', connection.loginGet, function (req, res, next) {
-    usersController.getAll;
+    usersController.getAll(function (err, result) {
+        if (err) {
+            res.json(err);
+        } else {
+            res.json(result);
+        }
+    })
 });
 
 
