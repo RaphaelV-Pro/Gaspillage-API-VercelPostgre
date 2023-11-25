@@ -17,6 +17,18 @@ router.get('/', function (req, res) {
     });
 });
 
+router.get('/auth/:login/:pwd', function (req, res) {
+    connection.loginGet(req, res, function (err) {
+        if (err) {
+            return res.status(403).send({
+                message: "Accès interdit, bloqué au bout de 3 tentatives."
+            });
+        }
+        usersController.authenticate(req, res);
+    });
+});
+
+
 //router.get("/:id", usersController.getById)
 router.get('/:id', function (req, res) {
     connection.loginGet(req, res, function (err) {
