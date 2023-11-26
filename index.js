@@ -15,8 +15,8 @@ app.use('/', (req, res) => {
 
 const usersRouter = require('./routes/users.router');
 const categoryRouter = require('./routes/category.router');
-const fridgeRouter = require('./controllers/fridge.controller');
-const itemRouter = require('./controllers/item.controller');
+const fridgeRouter = require('./routes/fridge.router');
+const itemRouter = require('./routes/item.router');
 
 app.use("/api/v1/users", usersRouter);
 app.use("/api/v1/category", categoryRouter);
