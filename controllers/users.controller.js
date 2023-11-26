@@ -10,14 +10,6 @@ const usersController = {
     },
     authenticate: async(req, res) => {
         try {
-            const { rows } = await postgre.query("SELECT * FROM users")
-            res.json({msg: "OK", data: rows})
-        } catch (error) {
-            res.json({msg: error.msg})
-        }
-    },
-    getById: async(req, res) => {
-        try {
             const { rows } = await postgre.query("SELECT * FROM users WHERE Uslogin = $1 AND Uspassword = $2", [req.params.login, req.params.pwd])
 
             if (rows[0]) {
@@ -25,6 +17,14 @@ const usersController = {
             }
 
             res.status(404).json({msg: "not found"})
+        } catch (error) {
+            res.json({msg: error.msg})
+        }
+    },
+    getById: async(req, res) => {
+        try {
+            const { rows } = await postgre.query("SELECT * FROM users")
+            res.json({msg: "OK", data: rows})
         } catch (error) {
             res.json({msg: error.msg})
         }
