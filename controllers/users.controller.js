@@ -23,8 +23,13 @@ const usersController = {
     },
     getById: async(req, res) => {
         try {
-            const { rows } = await postgre.query("SELECT * FROM users")
-            res.json({msg: "OK", data: rows})
+            const { rows } = await postgre.query("SELECT * FROM item WHERE Ususer_id = $1", [req.params.id])
+
+            if (rows[0]) {
+                return res.json({msg: "OK", data: rows})
+            }
+
+            res.status(404).json({msg: "not found"})
         } catch (error) {
             res.json({msg: error.msg})
         }
